@@ -1,4 +1,4 @@
 class ResturantSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :name, :address
+  attributes :city, :resturant_list
 end
