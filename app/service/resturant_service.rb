@@ -5,13 +5,13 @@ class ResturantService
     @term = term
   end
 
-  def self.find_open_resturants(location, open_at, term)
-    new(location, open_at, term).find_open_resturants
+  def self.find_open_resturants(location, open_at, term, limit)
+    new(location, open_at, term).find_open_resturants(limit)
   end
 
-  def find_open_resturants
+  def find_open_resturants(limit)
     raw_resturants = get_json("v3/businesses/search")
-    raw_resturants[:businesses].shuffle.take(3)
+    raw_resturants[:businesses].shuffle.take(limit)
   end
 
   private
