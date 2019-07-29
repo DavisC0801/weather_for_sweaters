@@ -13,15 +13,11 @@ class GeocodeService
     raw_coordinates = get_json("maps/api/geocode/json?")
     {
       coordinates: raw_coordinates[:results].first[:geometry][:location],
-      city: raw_coordinates[:results].first[:address_components].first[:long_name],
-      state: raw_coordinates[:results].first[:address_components].third[:short_name],
-      country: raw_coordinates[:results].first[:address_components].fourth[:long_name],
-      time: DateTime.now
     }
   end
 
   private
-  
+
   def parameters
     {
       key: ENV["GOOGLE_API_KEY"],
