@@ -11,7 +11,7 @@ class ResturantService
 
   def find_open_resturants
     raw_resturants = get_json("v3/businesses/search")
-    raw_resturants[:businesses].shuffle.slice(0,2)    
+    raw_resturants[:businesses].shuffle.slice(0,3)    
   end
 
   private
