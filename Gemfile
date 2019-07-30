@@ -42,6 +42,8 @@ group :development, :test do
   gem 'simplecov'
   gem 'pry'
   gem 'figaro'
+  gem 'webmock'
+  gem 'vcr'
 end
 
 group :development do
@@ -55,7 +57,6 @@ group :test do
   gem 'capybara', '>= 2.15'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
   gem 'launchy'
   gem 'rspec-rails'
 end
