@@ -8,8 +8,8 @@ class ForecastFacade
   end
 
   def find_forecast
-    locationdata = GoogleService.find_coordinates(@location)
-    forecast_info = ForecastService.find_forecast(locationdata)
-    Forecast.new(forecast_info)
+    location_data = GoogleService.find_coordinates(@location)
+    forecast_info = ForecastService.find_forecast(location_data[:coordinates])
+    Forecast.new(forecast_info, location_data)
   end
 end
