@@ -13,10 +13,7 @@ class GoogleService
       components: "locality:#{city}|administrative_area:#{state}"
     }
     raw_coordinates = get_json("maps/api/geocode/json?", default_parameters.merge(coordinates_params))
-    require 'pry'; binding.pry
-    {
-      coordinates: raw_coordinates[:results].first[:geometry][:location]
-    }
+    raw_coordinates[:results].first[:geometry][:location]
   end
 
   def find_arrival_time(origin, destination)
