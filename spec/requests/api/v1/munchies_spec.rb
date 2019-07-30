@@ -23,13 +23,13 @@ describe "/api/v1/munchies" do
   it "includes a resturant" do
     VCR.use_cassette("resturants/pueblo_chinese_all", allow_playback_repeats: true) do
       all_resturant_list = ResturantService.find_open_resturants("pueblo,co", 1564423200, "chinese", 11)
-      all_resturants = all_resturant_list.map { |attributes| Resturant.new(attributes) }
+      all_resturants = Resturant.new("pueblo,co", all_resturant_list)
       VCR.use_cassette("resturants/pueblo_chinese", allow_playback_repeats: true) do
         get "/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese"
         parsed_response = JSON.parse(body, symbolize_names: true)
-        names = all_resturants.map { |resturant| resturant.name }
-        addresses = all_resturants.map { |resturant| resturant.address }
-        ids = all_resturants.map { |resturant| resturant.id }
+        names = all_resturants.resturant_list.map { |resturant| resturant[:name] }
+        addresses = all_resturants.resturant_list.map { |resturant| resturant[:address] }
+        ids = all_resturants.resturant_list.map { |resturant| resturant[:id] }
 
         expect(names.include?(parsed_response[:data][:attributes][:resturant_list].first[:name])).to be true
         expect(addresses.include?(parsed_response[:data][:attributes][:resturant_list].first[:address])).to be true
