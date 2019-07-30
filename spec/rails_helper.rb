@@ -21,6 +21,13 @@ VCR.configure do |config|
   config.filter_sensitive_data('<UNSPLASH_SECRET_KEY>') { ENV['UNSPLASH_SECRET_KEY'] }
 end
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 SimpleCov.start 'rails'
 
 # Add additional requires below this line. Rails is not loaded until this point!
