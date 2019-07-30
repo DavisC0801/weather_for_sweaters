@@ -1,0 +1,83 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.unsplash.com/photos/random?count=1&query=Denver
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Client-ID <UNSPLASH_API_KEY>
+      User-Agent:
+      - Faraday v0.15.4
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - Cowboy
+      Cache-Control:
+      - no-cache, no-store, must-revalidate
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Request-Method:
+      - "*"
+      Access-Control-Allow-Headers:
+      - "*"
+      Access-Control-Expose-Headers:
+      - Link,X-Total,X-Per-Page,X-RateLimit-Limit,X-RateLimit-Remaining
+      Content-Type:
+      - application/json
+      X-Ratelimit-Limit:
+      - '50'
+      X-Ratelimit-Remaining:
+      - '49'
+      X-Request-Id:
+      - 1ef8be6b-ccf9-49f0-8e51-4a3ac52261e7
+      X-Runtime:
+      - '0.064473'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      Via:
+      - 1.1 varnish
+      - 1.1 varnish
+      - 1.1 vegur
+      Content-Length:
+      - '3134'
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 30 Jul 2019 22:03:56 GMT
+      Age:
+      - '0'
+      Connection:
+      - keep-alive
+      X-Served-By:
+      - cache-iad2144-IAD, cache-den19633-DEN
+      X-Cache:
+      - MISS, MISS
+      X-Cache-Hits:
+      - 0, 0
+      X-Timer:
+      - S1564524236.093238,VS0,VE115
+      Vary:
+      - Origin, Authorization
+    body:
+      encoding: UTF-8
+      string: '[{"id":"WHibx_fMEWQ","created_at":"2018-04-18T10:02:12-04:00","updated_at":"2019-07-28T01:28:57-04:00","width":2923,"height":4092,"color":"#EAE6E7","description":null,"alt_description":"shallow
+        focus photography of ceramic mug on wooden tray","urls":{"raw":"https://images.unsplash.com/photo-1524060073462-dc674a9042f0?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjg0MTI0fQ","full":"https://images.unsplash.com/photo-1524060073462-dc674a9042f0?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjg0MTI0fQ","regular":"https://images.unsplash.com/photo-1524060073462-dc674a9042f0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=1080&fit=max&ixid=eyJhcHBfaWQiOjg0MTI0fQ","small":"https://images.unsplash.com/photo-1524060073462-dc674a9042f0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjg0MTI0fQ","thumb":"https://images.unsplash.com/photo-1524060073462-dc674a9042f0?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=200&fit=max&ixid=eyJhcHBfaWQiOjg0MTI0fQ"},"links":{"self":"https://api.unsplash.com/photos/WHibx_fMEWQ","html":"https://unsplash.com/photos/WHibx_fMEWQ","download":"https://unsplash.com/photos/WHibx_fMEWQ/download","download_location":"https://api.unsplash.com/photos/WHibx_fMEWQ/download"},"categories":[],"sponsored":false,"sponsored_by":null,"sponsored_impressions_id":null,"likes":27,"liked_by_user":false,"current_user_collections":[],"user":{"id":"d1rczY8M1PM","updated_at":"2019-07-29T19:33:20-04:00","username":"benkolde","name":"Ben
+        Kolde","first_name":"Ben","last_name":"Kolde","twitter_username":"benkolde","portfolio_url":"http://www.paypal.me/benkolde","bio":"Hey
+        \ud83d\udc4b \u2014  I''m a product designer and developer with a crazy passion
+        for coffee and minimal, well-made goods. ","location":"San Francisco","links":{"self":"https://api.unsplash.com/users/benkolde","html":"https://unsplash.com/@benkolde","photos":"https://api.unsplash.com/users/benkolde/photos","likes":"https://api.unsplash.com/users/benkolde/likes","portfolio":"https://api.unsplash.com/users/benkolde/portfolio","following":"https://api.unsplash.com/users/benkolde/following","followers":"https://api.unsplash.com/users/benkolde/followers"},"profile_image":{"small":"https://images.unsplash.com/profile-1520262191045-ab3b9c257971?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=32&w=32","medium":"https://images.unsplash.com/profile-1520262191045-ab3b9c257971?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=64&w=64","large":"https://images.unsplash.com/profile-1520262191045-ab3b9c257971?ixlib=rb-1.2.1&q=80&fm=jpg&crop=faces&cs=tinysrgb&fit=crop&h=128&w=128"},"instagram_username":"benkolde","total_collections":1,"total_likes":32,"total_photos":62,"accepted_tos":true},"exif":{"make":"Canon","model":"Canon
+        EOS Rebel T6","exposure_time":"1/250","aperture":"1.6","focal_length":"35.0","iso":400},"location":{"title":"Aviano
+        Coffee Cherry Creek North, Denver, United States","name":"Aviano Coffee Cherry
+        Creek North","city":"Denver","country":"United States","position":{"latitude":39.720378,"longitude":-104.9543261}},"views":334941,"downloads":861}]'
+    http_version: 
+  recorded_at: Tue, 30 Jul 2019 22:03:54 GMT
+recorded_with: VCR 5.0.0
