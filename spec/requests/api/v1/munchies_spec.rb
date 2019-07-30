@@ -15,8 +15,8 @@ describe "/api/v1/munchies" do
   it "includes a city" do
     VCR.use_cassette("resturants/pueblo_chinese", allow_playback_repeats: true) do
       get "/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese"
-      parsed_response = JSON.parse(response.body)
-      expect(parsed_response["data"]["attributes"]["city"]).to eq("Pueblo, CO")
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:data][:attributes][:city]).to eq("Pueblo, CO")
     end
   end
 
@@ -26,17 +26,17 @@ describe "/api/v1/munchies" do
       all_resturants = all_resturant_list.map { |attributes| Resturant.new(attributes) }
       VCR.use_cassette("resturants/pueblo_chinese", allow_playback_repeats: true) do
         get "/api/v1/munchies?start=denver,co&end=pueblo,co&food=chinese"
-        parsed_response = JSON.parse(body)
+        parsed_response = JSON.parse(body, symbolize_names: true)
         names = all_resturants.map { |resturant| resturant.name }
         addresses = all_resturants.map { |resturant| resturant.address }
         ids = all_resturants.map { |resturant| resturant.id }
 
-        expect(names.include?(parsed_response["data"]["attributes"]["resturant_list"].first["name"])).to be true
-        expect(addresses.include?(parsed_response["data"]["attributes"]["resturant_list"].first["address"])).to be true
-        expect(ids.include?(parsed_response["data"]["attributes"]["resturant_list"].first["id"])).to be true
-        expect(names.include?(parsed_response["data"]["attributes"]["resturant_list"].last["name"])).to be true
-        expect(addresses.include?(parsed_response["data"]["attributes"]["resturant_list"].last["address"])).to be true
-        expect(ids.include?(parsed_response["data"]["attributes"]["resturant_list"].last["id"])).to be true
+        expect(names.include?(parsed_response[:data][:attributes][:resturant_list].first[:name])).to be true
+        expect(addresses.include?(parsed_response[:data][:attributes][:resturant_list].first[:address])).to be true
+        expect(ids.include?(parsed_response[:data][:attributes][:resturant_list].first[:id])).to be true
+        expect(names.include?(parsed_response[:data][:attributes][:resturant_list].last[:name])).to be true
+        expect(addresses.include?(parsed_response[:data][:attributes][:resturant_list].last[:address])).to be true
+        expect(ids.include?(parsed_response[:data][:attributes][:resturant_list].last[:id])).to be true
       end
     end
   end
