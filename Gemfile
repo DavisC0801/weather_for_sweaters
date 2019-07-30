@@ -44,6 +44,7 @@ group :development, :test do
   gem 'figaro'
   gem 'webmock'
   gem 'vcr'
+  gem 'shoulda-matchers'
 end
 
 group :development do
