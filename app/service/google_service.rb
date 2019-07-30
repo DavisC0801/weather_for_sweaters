@@ -13,7 +13,13 @@ class GoogleService
       components: "locality:#{city}|administrative_area:#{state}"
     }
     raw_coordinates = get_json("maps/api/geocode/json?", default_parameters.merge(coordinates_params))
-    raw_coordinates[:results].first[:geometry][:location]
+    {
+      coordinates: raw_coordinates[:results].first[:geometry][:location],
+      city: raw_coordinates[:results].first[:address_components].first[:long_name],
+      state: raw_coordinates[:results].first[:address_components].third[:short_name],
+      country: raw_coordinates[:results].first[:address_components].fourth[:long_name],
+      datetime: DateTime.now
+    }
   end
 
   def find_arrival_time(origin, destination)
