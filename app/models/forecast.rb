@@ -23,8 +23,8 @@ class Forecast
       current_brief_icon: current_forecast[:icon],
       current_brief_summary: current_forecast[:summary],
       current_temp: current_forecast[:temperature],
-      current_high: daily_forecast[:data].first[:temperatureHigh],
-      current_low: daily_forecast[:data].first[:temperatureLow],
+      current_high: daily_forecast[:data].first[:temperatureMax],
+      current_low: daily_forecast[:data].first[:temperatureMin],
     }
   end
 
