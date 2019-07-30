@@ -1,4 +1,4 @@
 class ForecastSerializer
   include FastJsonapi::ObjectSerializer
-  attributes :id, :currently, :hourly, :daily
+  attributes :currently, :hourly, :daily
 end
