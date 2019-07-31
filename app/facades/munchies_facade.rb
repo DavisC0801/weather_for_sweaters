@@ -10,7 +10,7 @@ class MunchiesFacade
   end
 
   def resturant_list
-    time_arrived = GoogleService.find_arrival_time(@origin, @destination)
+    time_arrived = GoogleService.find_destination_information(@origin, @destination)[:arrival_time]
     open_resturants = ResturantService.find_open_resturants(@destination, time_arrived, @food, 3)
     destination = Resturant.new(@destination, open_resturants)
     return destination
