@@ -16,8 +16,10 @@ describe "/api/v1/users" do
   end
 
   it "returns a response" do
-    post "/api/v1/users"
+    User.first.delete if !User.first.nil?
+    post "/api/v1/users", params: @params
     expect(response).to be_successful
+    expect(response.status).to eq(201)
   end
 
   it "returns an API key with a correct response" do
@@ -30,6 +32,7 @@ describe "/api/v1/users" do
 
   it "returns an error with the incorrect response" do
     post "/api/v1/users", params: @error_params
+    expect(response.status).to eq(401)
     parsed_response = JSON.parse(response.body, symbolize_names: true)
     expect(parsed_response[:error]).to eq("Password confirmation doesn't match Password")
   end

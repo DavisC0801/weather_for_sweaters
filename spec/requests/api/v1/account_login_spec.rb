@@ -23,8 +23,9 @@ describe "/api/v1/sessions" do
   end
 
   it "returns a response" do
-    post "/api/v1/sessions"
+    post "/api/v1/sessions", params: @params
     expect(response).to be_successful
+    expect(response.status).to eq(200)
   end
 
   it "returns an API key with a correct response" do
@@ -35,6 +36,7 @@ describe "/api/v1/sessions" do
 
   it "returns an error with the incorrect response" do
     post "/api/v1/sessions", params: @error_params
+    expect(response.status).to eq(401)
     parsed_response = JSON.parse(response.body, symbolize_names: true)
     expect(parsed_response[:error]).to eq("Invalid username/password combination")
   end
