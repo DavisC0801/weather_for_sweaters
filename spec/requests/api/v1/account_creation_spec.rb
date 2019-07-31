@@ -21,7 +21,7 @@ describe "/api/v1/users" do
   end
 
   it "returns an API key with a correct response" do
-    User.first.delete
+    User.first.delete if !User.first.nil?
     post "/api/v1/users", params: @params
     parsed_response = JSON.parse(response.body, symbolize_names: true)
     new_user = User.last
