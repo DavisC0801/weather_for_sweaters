@@ -1,4 +1,4 @@
-# Rales Engine
+# Weather for Sweaters
 An API for weather reports using Rails.
 
 ## Setup
