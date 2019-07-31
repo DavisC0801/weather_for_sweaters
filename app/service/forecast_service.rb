@@ -5,11 +5,15 @@ class ForecastService
   end
 
   def self.find_forecast(location)
-    new(location).find_forecast
+    Rails.cache.fetch("current-forecast-#{location}", expires_in: 10.minutes) do
+      new(location).find_forecast
+    end
   end
 
   def self.find_future_forecast(location, arrival_time)
-    new(location).find_future_forecast(arrival_time)
+    Rails.cache.fetch("future-forecast#{location}-#{arrival_time}", expires_in: 10.minutes) do
+      new(location).find_future_forecast(arrival_time)
+    end
   end
 
   def find_forecast

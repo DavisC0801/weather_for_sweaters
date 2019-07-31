@@ -6,7 +6,9 @@ class ResturantService
   end
 
   def self.find_open_resturants(location, open_at, term, limit)
-    new(location, open_at, term).find_open_resturants(limit)
+    Rails.cache.fetch("resturants-#{location}", expires_in: 10.minutes) do
+      new(location, open_at, term).find_open_resturants(limit)
+    end
   end
 
   def find_open_resturants(limit)

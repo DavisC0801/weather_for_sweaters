@@ -1,0 +1,4 @@
+desc "Resets API Keys daily at 1 AM"
+task :reset_api_keys => :environment do
+  APIKeyResetWorker.perform_async
+end
