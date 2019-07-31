@@ -4,7 +4,7 @@ class Api::V1::SessionsController < ApplicationController
     if user && user.authenticate(params[:password])
       render json: { "api_key" => user.api_key }
     else
-      render json: { "error" => "Invalid username/password combination" }
+      render json: { "error" => "Invalid username/password combination" }, :status => 401
     end
   end
 end
