@@ -23,16 +23,24 @@ describe "/api/v1/road_trip" do
       "api_key": "somegarbage"
     }
   end
+  
+  before :each do
+    allow(Time).to receive(:now).and_return(Time.at(1564423200))
+  end
 
   it "returns a response" do
-    post "/api/v1/road_trip", params: @params
-    expect(response).to be_successful
+    VCR.use_cassette("road_trip/denver_to_pueblo", allow_playback_repeats: true) do
+      post "/api/v1/road_trip", params: @params
+      expect(response).to be_successful
+    end
   end
 
   it "returns an error with the incorrect API key" do
-    post "/api/v1/road_trip", params: @error_params
-    expect(response.status).to eq(401)
-    parsed_response = JSON.parse(response.body, symbolize_names: true)
-    expect(parsed_response[:error]).to eq("Invalid API Key")
+    VCR.use_cassette("road_trip/denver_to_pueblo", allow_playback_repeats: true) do
+      post "/api/v1/road_trip", params: @error_params
+      expect(response.status).to eq(401)
+      parsed_response = JSON.parse(response.body, symbolize_names: true)
+      expect(parsed_response[:error]).to eq("Invalid API Key")
+    end
   end
 end
