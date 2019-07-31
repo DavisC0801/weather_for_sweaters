@@ -34,7 +34,6 @@ describe RoadTrip do
   it "has destination information" do
     destination = @test_road_trip.location
     expect(destination[:trip_duration]).to eq("1 hour 47 mins")
-    expect(destination[:arrival_time]).to eq(" 1:46 PM")
     expect(destination[:destination_city]).to eq("Pueblo")
     expect(destination[:destination_state]).to eq("CO")
     expect(destination[:destination_country]).to eq("USA")
