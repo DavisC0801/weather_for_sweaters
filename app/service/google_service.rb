@@ -4,8 +4,8 @@ class GoogleService
     new.find_coordinates(split_location.first, split_location.last)
   end
 
-  def self.find_arrival_time(origin, destination)
-    new.find_arrival_time(origin, destination)
+  def self.find_destination_information(origin, destination)
+    new.find_destination_information(origin, destination)
   end
 
   def find_coordinates(city, state)
@@ -22,13 +22,16 @@ class GoogleService
     }
   end
 
-  def find_arrival_time(origin, destination)
+  def find_destination_information(origin, destination)
     arrival_parameters = {
       origin: origin,
       destination: destination
     }
     raw_trip_info = get_json("maps/api/directions/json", default_parameters.merge(arrival_parameters))
-    Time.now.to_i + raw_trip_info[:routes].first[:legs].first[:duration][:value]
+    {
+      arrival_time: Time.now.to_i + raw_trip_info[:routes].first[:legs].first[:duration][:value],
+      destination_coordinates: raw_trip_info[:routes].first[:legs].first[:end_location]
+    }
   end
 
   private
