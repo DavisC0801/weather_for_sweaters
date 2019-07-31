@@ -1,11 +1,15 @@
 class GoogleService
   def self.find_coordinates(location)
-    split_location = location.split(",")
-    new.find_coordinates(split_location.first, split_location.last)
+    Rails.cache.fetch(location) do
+      split_location = location.split(",")
+      new.find_coordinates(split_location.first, split_location.last)
+    end
   end
 
   def self.find_destination_information(origin, destination)
-    new.find_destination_information(origin, destination)
+    Rails.cache.fetch("destination-#{origin}-#{destination}", expires_in: 10.minutes) do
+      new.find_destination_information(origin, destination)
+    end
   end
 
   def find_coordinates(city, state)
