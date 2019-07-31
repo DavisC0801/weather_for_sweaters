@@ -1,7 +1,7 @@
 require "rails_helper"
 
 describe "/api/v1/users" do
-  before :each do
+  before :all do
     @params = {
       "email": "whatever@example.com",
       "password": "password",
@@ -15,12 +15,13 @@ describe "/api/v1/users" do
     }
   end
 
-  it "gives a reply" do
-    post "/api/v1/users", params: @params
+  it "returns a response" do
+    post "/api/v1/users"
     expect(response).to be_successful
   end
 
   it "returns an API key with a correct response" do
+    User.first.delete
     post "/api/v1/users", params: @params
     parsed_response = JSON.parse(response.body, symbolize_names: true)
     new_user = User.last
@@ -30,7 +31,6 @@ describe "/api/v1/users" do
   it "returns an error with the incorrect response" do
     post "/api/v1/users", params: @error_params
     parsed_response = JSON.parse(response.body, symbolize_names: true)
-    expect(User.last).to be_nil
     expect(parsed_response[:error]).to eq("Password confirmation doesn't match Password")
   end
 end
