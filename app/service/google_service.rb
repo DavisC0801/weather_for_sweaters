@@ -30,7 +30,9 @@ class GoogleService
     raw_trip_info = get_json("maps/api/directions/json", default_parameters.merge(arrival_parameters))
     {
       arrival_time: Time.now.to_i + raw_trip_info[:routes].first[:legs].first[:duration][:value],
-      destination_coordinates: raw_trip_info[:routes].first[:legs].first[:end_location]
+      destination_coordinates: raw_trip_info[:routes].first[:legs].first[:end_location],
+      duration: raw_trip_info[:routes].first[:legs].first[:duration][:text],
+      destination_address: raw_trip_info[:routes].first[:legs].first[:end_address]
     }
   end
 
